@@ -19,6 +19,8 @@ const getImage = async function (
   button.innerText = "Press [esc] to clear";
 };
 
+// ==== function expressions ====
+
 const selectRandomImage = function (images) {
   const randomIndex = images[Math.floor(Math.random() * images.length)];
   const randomImage = randomIndex;

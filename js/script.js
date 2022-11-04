@@ -7,7 +7,6 @@
 const button = document.querySelector("button");
 const authorSpan = document.querySelector(".author");
 const imgDiv = document.querySelector(".image-container");
-imgDiv.style.transition = "all .7s";
 const img = document.querySelector(".img");
 
 // ==== async functions ====

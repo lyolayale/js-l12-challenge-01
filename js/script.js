@@ -1,12 +1,13 @@
 /*
 - Purpose: Practice JS API fetch --> Image Generator
-- Date: 03-NOV-2022
+- Date: 03-NOV-2022 / 04-NOV-2022
 */
 
 // ==== variables ====
 const button = document.querySelector("button");
 const authorSpan = document.querySelector(".author");
 const imgDiv = document.querySelector(".image-container");
+imgDiv.style.transition = "all .7s";
 const img = document.querySelector(".img");
 
 // ==== async functions ====
@@ -15,13 +16,33 @@ const getImage = async function (
 ) {
   const res = await fetch(url);
   const images = await res.json();
-  const randomImage = images[Math.floor(Math.random() * images.length)];
-  const img2 = document.createElement("img");
-  img2.src = randomImage.download_url;
-
-  document.body.prepend(img2);
-  console.log(randomImage);
-  console.log(images);
+  selectRandomImage(images);
+  button.innerText = "Press [esc] to clear";
 };
 
-getImage();
+const selectRandomImage = function (images) {
+  const randomIndex = images[Math.floor(Math.random() * images.length)];
+  const randomImage = randomIndex;
+  displayImage(randomImage);
+};
+
+const displayImage = function (randomImage) {
+  const author = randomImage.author;
+  const imageAddress = randomImage.download_url;
+  authorSpan.innerText = author;
+  img.src = imageAddress;
+  imgDiv.classList.remove("hide");
+};
+
+// ==== enable image w/ button click ====
+button.addEventListener("click", function () {
+  getImage();
+});
+
+// ==== hide image container ===
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" || e.key === "Enter") {
+    imgDiv.classList.add("hide");
+    button.innerText = "Show me an image!";
+  }
+});

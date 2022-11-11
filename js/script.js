@@ -16,7 +16,7 @@ const getImage = async function (
   const res = await fetch(url);
   const images = await res.json();
   selectRandomImage(images);
-  button.innerText = "Press [esc] to clear";
+  // button.innerText = "Press [esc] to clear";
 };
 
 // ==== function expressions ====

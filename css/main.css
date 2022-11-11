@@ -61,3 +61,7 @@ figure {
   max-width: 1000px;
   margin: 0 auto;
 }
+
+small {
+  width: 100%;
+}
